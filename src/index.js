@@ -1,15 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import firebase from 'firebase';
-import { connect } from 'react-firebase';
 
 import './index.css';
 import App from './components/App';
+import {Container} from 'flux/utils';
 import registerServiceWorker from './registerServiceWorker';
 
-import Config from './config/config.local.js';
+import AuthStore from './store/AuthStore';
+import Actions from './action/Actions';
 
-firebase.initializeApp(Config);
-ReactDOM.render(<App />, document.getElementById('root'));
+function getStores() {
+  return [
+    AuthStore,
+  ]
+}
+
+function getState() {
+  return {
+    auth: AuthStore.getState(),
+  }
+}
+
+const AppContainer = Container.createFunctional(App, getStores, getState);
+
+Actions.checkIfAlreadyLoggedIn();
+ReactDOM.render(<AppContainer />, document.getElementById('root'));
 registerServiceWorker();
+
+
 
