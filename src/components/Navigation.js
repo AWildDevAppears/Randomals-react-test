@@ -40,7 +40,7 @@ class Navigation extends Component {
       for (let key in this.state.loggedIn) {
         items.push(<li key={key}><Link to={key}>{ this.state.loggedIn[key] }</Link></li>);
       }
-      items.push(<button onClick={Actions.performLogOut}>Log out</button>);
+      items.push(<button key="log-out" onClick={Actions.performLogOut}>Log out</button>);
     } else {
       for (let key in this.state.loggedOut) {
         items.push(<li key={key}><Link to={key}>{ this.state.loggedOut[key] }</Link></li>);
