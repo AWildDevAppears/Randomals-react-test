@@ -13,12 +13,11 @@ Feature: Login
     Scenario: Login fail
         Given I have navigated to '/login'
         When I enter 'email@example.com' into the field with the 'type' of 'email'
-        And I enter 'wrong' into the field with the 'type' of 'password'
+        And I enter 'wrong@email' into the field with the 'type' of 'password'
         And I click on the element with the 'type' of 'submit'
-        Then I should be presented with an element with the 'data-def' of 'modal - login failed'
+        Then I should be presented with an element with the 'data-def' of 'alert - login failed'
 
     Scenario: Login fail - no data
         Given I have navigated to '/login'
         And I click on the element with the 'type' of 'submit'
-        Then I should be presented with an element with the 'data-def' of 'tooltip - required - username'
-        And I should be presented with an element with the 'data-def' of 'tooltip - required - password'
+        Then I should be presented with an element with the 'data-def' of 'alert - login failed'

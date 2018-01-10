@@ -31,8 +31,10 @@ function App(props) {
         <main>
           { handleRedirects(props) }
           <Switch>
-            <Route path="/login" component={Login} { ...props } />
-            <Route exact path="/" component={Home} { ...props }/>
+            <Route path="/login" render={(routeProps) => (
+              <Login {...routeProps} {...props} />
+            )} />
+            <Route exact path="/" component={Home} { ...props } />
           </Switch>
         </main>
       </React.Fragment>

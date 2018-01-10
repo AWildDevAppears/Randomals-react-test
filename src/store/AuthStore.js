@@ -25,7 +25,7 @@ class AuthStore extends ReduceStore {
         s.user = action.user;
         break;
       case ActionTypes.FAIL_LOG_IN:
-        console.log(action)
+        s.errorCode = action.code;
         break;
       case ActionTypes.LOG_OUT:
         Auth.signOut();
