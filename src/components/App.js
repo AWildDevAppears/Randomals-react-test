@@ -8,6 +8,7 @@ import {
 
 import Navigation from './Navigation';
 import Login from './Login';
+import Home from './Home';
 
 function handleRedirects(props) {
   const to = { pathname: '/' }
@@ -22,7 +23,6 @@ function handleRedirects(props) {
   }
 }
 
-
 function App(props) {
   return (
     <Router>
@@ -32,9 +32,7 @@ function App(props) {
           { handleRedirects(props) }
           <Switch>
             <Route path="/login" component={Login} { ...props } />
-            {/* <Route exact path="/" component={Home}/>
-            <Route path="/about" component={About}/>
-            <Route path="/topics" component={Topics}/> */}
+            <Route exact path="/" component={Home} { ...props }/>
           </Switch>
         </main>
       </React.Fragment>
