@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import AuthStore from '../store/AuthStore';
-
 import Actions from '../action/Actions';
 import ErrorMessage from './partials/ErrorMessage';
 
@@ -70,14 +68,26 @@ class Login extends Component {
   outputErrors = () => {
     switch(this.props.auth.errorCode) {
       case 'auth/user-not-found':
-        this.state.error = 'Invalid username / password combination';
+        this.setState({
+          ...this.state,
+          error: 'Invalid username / password combination',
+        });
+
         break;
       case 'auth/invalid-email':
-        this.state.error = 'Invalid email format, emails should take the form of [name]@[domain].[com / org / etc.] e.g. email@example.com';
+        this.setState({
+          ...this.state,
+          error: 'Invalid email format, emails should take the form of [name]@[domain].[com / org / etc.] e.g. email@example.com',
+        });
+
+        break;
       case '':
         break;
       default:
-        this.state.error = this.props.auth.errorCode;
+        this.setState({
+          ...this.state,
+          error: this.props.auth.errorCode,
+        });
     }
 
     this.props.auth.errorCode = '';
