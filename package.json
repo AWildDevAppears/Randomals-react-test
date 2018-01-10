@@ -12,7 +12,8 @@
     "react-firebase": "^2.2.8",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.17"
+    "react-scripts": "1.0.17",
+    "selenium-webdriver": "^3.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
