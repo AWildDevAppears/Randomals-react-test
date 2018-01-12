@@ -34,10 +34,8 @@ class RandomalsStore extends ReduceStore {
       case ActionTypes.GET_ALL_RANDOMALS:
         s.list = this.randomals;
         break;
-      case ActionTypes.GET_MY_RANDOMALS:
-        s.myList = this.randomals.filter((item) => item.creator === action.user.id)
       case ActionTypes.ADD_RANDOMAL:
-        this.addRandomal(action.randomal, action.user)
+        this.addRandomal(action.randomal, action.user);
       default:
         console.log(`-- NYI - ${action.type}`);
     }

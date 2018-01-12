@@ -9,6 +9,7 @@ import {
 import Navigation from './Navigation';
 import Login from './Login';
 import Home from './Home';
+import MyRandomals from './MyRandomals';
 import AddRandomal from './AddRandomal';
 
 function App(props) {
@@ -26,13 +27,19 @@ function App(props) {
               )
             )} />
             <Route exact path="/" render={(routeProps) => (
-              <Home {...routeProps} {...props} />
+              <Home {...routeProps} randomals={ props.randomals.list } auth={ props.auth } />
             )} />
             <Route path="/add" render={(routeProps) => (
               <AddRandomal {...routeProps} {...props}  />
             )} />
             <Route path="/my-list" render={(routeProps) => (
-              <div>This is my list of randomals</div>
+              <MyRandomals
+                {...routeProps}
+                randomals={
+                  props.auth.user ? props.randomals.list.filter((item) => item.creator === props.auth.user.uid) : []
+                }
+                auth={ props.auth }
+              />
             )} />
           </Switch>
         </main>

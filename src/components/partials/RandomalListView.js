@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import RandomalsStore from '../../store/RandomalsStore';
+import Actions from '../../action/randomals/Actions';
 
 class RandomalListView extends Component {
-
   render() {
     return (
       <React.Fragment>
-        <h1>List of Randomals</h1>
-        <button onClick={ this.addRandomal }>Add new Randomal</button>
-        <button onClick={ this.myRandomals }>My Randomals</button>
         { this.getRandomals() }
       </React.Fragment>
     );
@@ -21,7 +18,7 @@ class RandomalListView extends Component {
   }
 
   getRandomals = () => {
-    return this.props.randomals.list.map((randomal) => {
+    return this.props.randomals.map((randomal) => {
       return (
         <div key={ randomal.id } className="card">
           <h3>{ randomal.name }</h3>
@@ -34,9 +31,11 @@ class RandomalListView extends Component {
     });
   }
 
-  addRandomal = (e) => this.props.history.push('/add');
+  deleteRandomal = (randomal) => {
+    Actions.deleteRandomal(randomal, this.props.auth.user);
+  }
 
-  myRandomals = (e) => this.props.history.push('/my-list');
+
 }
 
 export default RandomalListView;
