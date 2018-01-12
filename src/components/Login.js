@@ -17,11 +17,11 @@ class Login extends Component {
         { this.outputErrors() }
         <label>
           Email
-          <input type="email" value={ this.state.email } onChange={ this.setEmail } />
+          <input type="email" name="email" value={ this.state.email } onChange={ this.setValue } />
         </label>
          <label>
           Password
-          <input type="password" value={ this.state.password } onChange={ this.setPassword } />
+          <input type="password" name="password" value={ this.state.password } onChange={ this.setValue } />
         </label>
 
         <input type="submit" value="Log in" />
@@ -29,25 +29,16 @@ class Login extends Component {
     );
   }
 
-  setEmail = (e) => {
+  setValue = (e) => {
     this.setState({
       ...this.state,
-      email: e.target.value,
-      error: '', // When we start retyping our password, remove any residual errors
-    })
-  }
-
-  setPassword = (e) => {
-    this.setState({
-      ...this.state,
-      password: e.target.value,
-      error: '', // When we start retyping our password, remove any residual errors
-    })
+      [e.target.name]: e.target.value,
+      error: '', // When we start retyping our  email & password, remove any residual errors
+    });
   }
 
   logIn = (e) => {
     e.preventDefault();
-
 
     if (this.state.email.trim().length === 0 || this.state.password.trim().length === 0) {
       this.setState({
