@@ -10,31 +10,24 @@ import Navigation from './Navigation';
 import Login from './Login';
 import Home from './Home';
 
-function handleRedirects(props) {
-  const to = { pathname: '/' }
-
-  if (props.auth.user) {
-    return (
-      <React.Fragment>
-        <Redirect from={{ pathname: '/login' }} to={to} />
-        <Redirect from={{ pathname: '/signup' }} to={to} />
-      </React.Fragment>
-    )
-  }
-}
-
 function App(props) {
   return (
     <Router>
       <React.Fragment>
         <Navigation { ...props } />
-        <main>
-          { handleRedirects(props) }
+        <main className="content">
           <Switch>
             <Route path="/login" render={(routeProps) => (
-              <Login {...routeProps} {...props} />
+              props.auth.user ? (
+                <Redirect from="/login" to="/" />
+              ) : (
+                <Login {...routeProps} {...props} />
+              )
             )} />
-            <Route exact path="/" component={Home} { ...props } />
+            <Route exact path="/" render={(routeProps) => (
+              <Home {...routeProps} {...props} />
+            )} />
+            )} />
           </Switch>
         </main>
       </React.Fragment>
