@@ -9,6 +9,7 @@ import {
 import Navigation from './Navigation';
 import Login from './Login';
 import Home from './Home';
+import AddRandomal from './AddRandomal';
 
 function App(props) {
   return (
@@ -27,6 +28,11 @@ function App(props) {
             <Route exact path="/" render={(routeProps) => (
               <Home {...routeProps} {...props} />
             )} />
+            <Route path="/add" render={(routeProps) => (
+              <AddRandomal {...routeProps} {...props}  />
+            )} />
+            <Route path="/my-list" render={(routeProps) => (
+              <div>This is my list of randomals</div>
             )} />
           </Switch>
         </main>
