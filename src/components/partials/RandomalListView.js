@@ -5,6 +5,8 @@ import Actions from '../../action/randomals/Actions';
 
 import LikeComponent from './LikeComponent';
 
+import '../../style/card.css';
+
 class RandomalListView extends Component {
   render() {
     return (
@@ -28,10 +30,10 @@ class RandomalListView extends Component {
   getRandomals = () => {
     if (this.props.randomals.length === 0) {
       return (
-        <React.Fragment>
+        <div className="card">
           <h3>No Randomals to show :(</h3>
           { this.userId() ? (<Link to="/add">Add a Randomal</Link>) : '' }
-        </React.Fragment>
+        </div>
       )
     }
     return this.props.randomals.map((randomal) => {
@@ -47,7 +49,7 @@ class RandomalListView extends Component {
             onLike={ () => this.likeRandomal(randomal) }
           />
           <ul>
-            { this.displayTraitsForRandomal(randomal) }
+           { this.displayTraitsForRandomal(randomal) }
           </ul>
         </div>
       )
