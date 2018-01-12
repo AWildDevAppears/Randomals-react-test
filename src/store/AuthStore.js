@@ -27,6 +27,9 @@ class AuthStore extends ReduceStore {
       case ActionTypes.FAIL_LOG_IN:
         s.errorCode = action.code;
         break;
+      case ActionTypes.SIGN_UP:
+        this.attemptSignUp(action.user);
+        break;
       case ActionTypes.LOG_OUT:
         Auth.signOut();
         delete s.user;
@@ -57,6 +60,26 @@ class AuthStore extends ReduceStore {
       if (user) {
         Actions.onSuccessfulLogin(user)
       }
+    });
+  }
+
+  attemptSignUp = (user) => {
+    FBApp.auth().createUserWithEmailAndPassword(user.email, user.password)
+    .then((u) => {
+      FBApp.database().ref(`users/${u.uid}`).set({
+        uid: u.uid,
+        email: u.email,
+        username: user.username,
+      });
+
+      Actions.onSuccessfulLogin(u);
+    })
+    .catch((error) => {
+      if (!error.code) {
+        return;
+      }
+
+      Actions.onFailedLogin(error)
     });
   }
 }

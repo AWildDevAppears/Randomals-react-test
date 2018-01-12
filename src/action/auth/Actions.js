@@ -22,9 +22,10 @@ const Actions = {
     });
   },
 
-  performSignUp() {
+  performSignUp(user) {
     Dispatcher.dispatch({
       type: ActionTypes.SIGN_UP,
+      user,
     });
   },
 

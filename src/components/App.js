@@ -9,6 +9,7 @@ import {
 import Navigation from './partials/Navigation';
 import Login from './Login';
 import Home from './Home';
+import SignUp from './SignUp';
 import MyRandomals from './MyRandomals';
 import AddRandomal from './AddRandomal';
 
@@ -24,6 +25,13 @@ function App(props) {
                 <Redirect from="/login" to="/" />
               ) : (
                 <Login {...routeProps} {...props} />
+              )
+            )} />
+            <Route path="/sign-up" render={(routeProps) => (
+              props.auth.user ? (
+                <Redirect from="/sign-up" to="/" />
+              ) : (
+                <SignUp {...routeProps} {...props} />
               )
             )} />
             <Route exact path="/" render={(routeProps) => (

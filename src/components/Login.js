@@ -8,13 +8,13 @@ class Login extends Component {
     email: '',
     password: '',
 
-    error: ''
+    error: '',
   }
 
   render() {
     return (
       <form onSubmit={ this.logIn }>
-        { this.outputErrors()}
+        { this.outputErrors() }
         <label>
           Email
           <input type="email" value={ this.state.email } onChange={ this.setEmail } />
