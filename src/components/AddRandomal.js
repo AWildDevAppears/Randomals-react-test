@@ -166,7 +166,12 @@ class Home extends Component {
       return;
     }
 
-    Actions.addRandomal(this.state, this.props.auth.user)
+    let randomal = {
+      ...this.state,
+      date: Date.now(),
+    };
+
+    Actions.addRandomal(randomal, this.props.auth.user)
 
     this.props.history.push('/my-list');
   }
