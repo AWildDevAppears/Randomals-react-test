@@ -7,17 +7,23 @@ import {Container} from 'flux/utils';
 import registerServiceWorker from './registerServiceWorker';
 
 import AuthStore from './store/AuthStore';
+import RandomalsStore from './store/RandomalsStore';
+
+
 import AuthActions from './action/auth/Actions';
+import RandomalsActions from './action/randomals/Actions';
 
 function getStores() {
   return [
     AuthStore,
+    RandomalsStore,
   ]
 }
 
 function getState() {
   return {
     auth: AuthStore.getState(),
+    randomals: RandomalsStore.getState(),
   }
 }
 
