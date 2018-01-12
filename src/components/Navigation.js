@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 
 import AuthStore from '../store/AuthStore';
-import Actions from '../action/Actions';
+import Actions from '../action/auth/Actions';
+
 
 class Navigation extends Component {
   state = {

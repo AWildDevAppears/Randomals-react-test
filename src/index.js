@@ -7,7 +7,7 @@ import {Container} from 'flux/utils';
 import registerServiceWorker from './registerServiceWorker';
 
 import AuthStore from './store/AuthStore';
-import Actions from './action/Actions';
+import AuthActions from './action/auth/Actions';
 
 function getStores() {
   return [
@@ -23,7 +23,7 @@ function getState() {
 
 const AppContainer = Container.createFunctional(App, getStores, getState);
 
-Actions.checkIfAlreadyLoggedIn();
+AuthActions.checkIfAlreadyLoggedIn();
 ReactDOM.render(<AppContainer />, document.getElementById('root'));
 registerServiceWorker();
 

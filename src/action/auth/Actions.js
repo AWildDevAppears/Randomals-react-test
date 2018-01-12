@@ -1,5 +1,5 @@
 import ActionTypes from './ActionTypes'
-import Dispatcher from './Dispatcher'
+import Dispatcher from '../Dispatcher'
 
 const Actions = {
   checkIfAlreadyLoggedIn() {
@@ -29,7 +29,7 @@ const Actions = {
   },
 
   onSuccessfulLogin(user) {
-    Dispatcher.dispatch({
+     Dispatcher.dispatch({
       type: ActionTypes.LOGIN_SUCCESS,
       user,
     });

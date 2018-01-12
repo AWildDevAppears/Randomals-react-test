@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Actions from '../action/Actions';
+import Actions from '../action/auth/Actions';
 import ErrorMessage from './partials/ErrorMessage';
 
 class Login extends Component {

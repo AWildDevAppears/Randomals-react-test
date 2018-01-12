@@ -1,6 +1,6 @@
 import { ReduceStore } from 'flux/utils';
-import Actions from '../action/Actions';
-import ActionTypes from '../action/ActionTypes';
+import Actions from '../action/auth/Actions';
+import ActionTypes from '../action/auth/ActionTypes';
 import Dispatcher from '../action/Dispatcher';
 import FBApp from '../Database';
 
