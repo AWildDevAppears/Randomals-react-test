@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import Actions from '../../action/randomals/Actions';
 
 import LikeComponent from './LikeComponent';
@@ -24,6 +26,14 @@ class RandomalListView extends Component {
   }
 
   getRandomals = () => {
+    if (this.props.randomals.length === 0) {
+      return (
+        <React.Fragment>
+          <h3>No Randomals to show :(</h3>
+          { this.userId() ? (<Link to="/add">Add a Randomal</Link>) : '' }
+        </React.Fragment>
+      )
+    }
     return this.props.randomals.map((randomal) => {
       return (
         <div key={ randomal.id } className="card">

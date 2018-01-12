@@ -10,7 +10,7 @@ class Home extends Component {
       <React.Fragment>
         <header>
           <h1>Randomals</h1>
-          <p>A test app based on th concept of creating and sharing animals</p>
+          <p>A test app based on the concept of creating and sharing animals</p>
         </header>
         { this.displayLinks() }
         <RandomalListView {...this.props} />

@@ -8,7 +8,7 @@ class Home extends Component {
       <React.Fragment>
         <header>
           <h1>My Randomals</h1>
-          <p>A test app based on th concept of creating and sharing animals</p>
+          <p>A test app based on the concept of creating and sharing animals</p>
           <h2> All Randomals </h2>
         </header>
         <nav>
