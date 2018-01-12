@@ -36,6 +36,10 @@ class RandomalsStore extends ReduceStore {
         break;
       case ActionTypes.ADD_RANDOMAL:
         this.addRandomal(action.randomal, action.user);
+        break;
+      case ActionTypes.DELETE_RANDOMAL:
+        this.deleteRandomal(action.randomal, action.user);
+        break;
       default:
         console.log(`-- NYI - ${action.type}`);
     }
@@ -53,6 +57,12 @@ class RandomalsStore extends ReduceStore {
   addRandomal(randomal, user) {
     randomal.creator = user.uid;
     FBApp.database().ref(`randomals/${user.uid}`).push(randomal);
+  }
+
+  deleteRandomal(randomal, user) {
+    if (user.uid === randomal.creator) {
+      FBApp.database().ref(`randomals/${user.uid}/${randomal.id}`).remove();
+    }
   }
 }
 

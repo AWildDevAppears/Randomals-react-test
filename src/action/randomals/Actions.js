@@ -8,11 +8,11 @@ const Actions = {
     });
   },
 
-
-  deleteRandomal(randomal) {
+  deleteRandomal(randomal, user) {
     Dispatcher.dispatch({
       type: ActionTypes.DELETE_RANDOMAL,
       randomal,
+      user,
     });
   },
 

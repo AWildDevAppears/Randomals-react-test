@@ -12,6 +12,12 @@ class RandomalListView extends Component {
     );
   }
 
+  displayDeleteButton = (randomal) => {
+    if (this.props.auth.user && this.props.auth.user.uid === randomal.creator) {
+      return <button onClick={ (e) => this.deleteRandomal(randomal) }>Delete</button>;
+    }
+  }
+
   displayTraitsForRandomal = (randomal) => {
     return Object.keys(randomal.looks).map((trait) =>
       (<li key={trait}>{ trait }: { randomal.looks[trait] }</li>))
@@ -23,6 +29,7 @@ class RandomalListView extends Component {
         <div key={ randomal.id } className="card">
           <h3>{ randomal.name }</h3>
           <p>Made by: { randomal.creator }</p>
+          { this.displayDeleteButton(randomal) }
           <ul>
             { this.displayTraitsForRandomal(randomal) }
           </ul>
