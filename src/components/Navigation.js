@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import AuthStore from '../store/AuthStore';
 import Actions from '../action/auth/Actions';
 
+import '../style/list.css';
+import '../style/nav.css';
 
 class Navigation extends Component {
   state = {
@@ -21,8 +23,10 @@ class Navigation extends Component {
   render() {
     return (
       <nav className="nav">
-        <h1>Randomals</h1>
-        <ul className="list--unstyled list--inline">
+        <div className="nav__brand">
+          Randomals
+        </div>
+        <ul className="list--unstyled list--inline nav__list">
           { Object.keys(this.state.navigation).map(this.createMenuLink) }
           { this.outputConditionalLinks() }
         </ul>
@@ -31,7 +35,7 @@ class Navigation extends Component {
   }
 
   createMenuLink = (key) => {
-    return <li key={key}><Link to={key}>{ this.state.navigation[key] }</Link></li>
+    return <li className="list__item" key={key}><Link to={key}>{ this.state.navigation[key] }</Link></li>
   }
 
   outputConditionalLinks = () => {
@@ -39,12 +43,12 @@ class Navigation extends Component {
 
     if (this.props.auth.user) {
       for (let key in this.state.loggedIn) {
-        items.push(<li key={key}><Link to={key}>{ this.state.loggedIn[key] }</Link></li>);
+        items.push(<li className="list__item" key={key}><Link to={key}>{ this.state.loggedIn[key] }</Link></li>);
       }
       items.push(<button key="log-out" onClick={Actions.performLogOut}>Log out</button>);
     } else {
       for (let key in this.state.loggedOut) {
-        items.push(<li key={key}><Link to={key}>{ this.state.loggedOut[key] }</Link></li>);
+        items.push(<li className="list__item" key={key}><Link to={key}>{ this.state.loggedOut[key] }</Link></li>);
       }
     }
 

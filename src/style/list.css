@@ -1,0 +1,17 @@
+.list--unstyled {
+    list-style: none;
+}
+
+.list--inline {
+    display: block;
+    margin: 0;
+}
+
+.list--inline .list__item {
+    display: inline-block;
+}
+
+.list__item a {
+    display: inline-block;
+    padding: 10px 20px;
+}
