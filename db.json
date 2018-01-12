@@ -1,0 +1,48 @@
+{
+    "randomals": {
+        "user-one": {
+            "aadsffdsa": {
+                "name": "Fluffy McFluff",
+                "creator": "user-one",
+                "looks": {
+                    "ears": "pointy",
+                    "nose": "beak",
+                    "eyes": "crazed",
+                    "color": "pink"
+                }
+            },
+            "bdsafdsafsda": {
+                "name": "Professor Monkeyson the Third",
+                "creator": "user-one",
+                "looks": {
+                    "ears": "long",
+                    "nose": "snout",
+                    "eyes": "sleepy",
+                    "color": "purple"
+                }
+            }
+        },
+        "user-two": {
+            "dasfdsfxcz": {
+                "name": "Snicker bar bear",
+                "creator": "user-two",
+                "looks": {
+                    "ears": "round",
+                    "nose": "muzzle",
+                    "eyes": "energetic",
+                    "color": "cream"
+                }
+            },
+            "cadsfasdfads": {
+                "name": "Incompentent Iguana",
+                "creator": "user-two",
+                "looks": {
+                    "ears": "none",
+                    "nose": "reptilian",
+                    "eyes": "watchful",
+                    "color": "salmon"
+                }
+            }
+        }
+    }
+}
