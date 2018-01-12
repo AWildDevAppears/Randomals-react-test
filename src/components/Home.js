@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 
+import RandomalListView from './partials/RandomalListView';
 class Home extends Component {
-
   render() {
     return (
-      <h1>Home page</h1>
+      <React.Fragment>
+        <header>
+          <h1>Randomals</h1>
+          <p>A test app based on th concept of creating and sharing animals</p>
+        </header>
+        <RandomalListView {...this.props} />
+      </React.Fragment>
     );
   }
 }
