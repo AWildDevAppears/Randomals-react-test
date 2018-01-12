@@ -8,12 +8,6 @@ const Actions = {
     });
   },
 
-  getMyRandomals(user) {
-    Dispatcher.dispatch({
-      type: ActionTypes.GET_MY_RANDOMALS,
-      user,
-    });
-  },
 
   deleteRandomal(randomal) {
     Dispatcher.dispatch({
@@ -29,13 +23,6 @@ const Actions = {
       user,
     });
   },
-
-  returnCollectedRandomals(randomals) {
-    Dispatcher.dispatch({
-      type: ActionTypes.RETURN_RANDOMALS,
-      randomals,
-    })
-  }
 }
 
 export default Actions;
