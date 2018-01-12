@@ -13,11 +13,17 @@ class RandomalsStore extends ReduceStore {
     FBApp.database().ref('randomals').on('value', (snapshot) => {
       let data = snapshot.val()
       this.randomals = [];
-      console.log(data)
 
       for (let user in data) {
         let items = Object.keys(data[user]).map((item) => {
           data[user][item].id = item;
+
+          if (data[user][item].likes) {
+            data[user][item].likes = Object.keys(data[user][item].likes).map((uid) => data[user][item].likes[uid]);
+          } else {
+            data[user][item].likes = [];
+          }
+
           return data[user][item]
         });
         this.randomals.push(...items);
@@ -40,6 +46,8 @@ class RandomalsStore extends ReduceStore {
       case ActionTypes.DELETE_RANDOMAL:
         this.deleteRandomal(action.randomal, action.user);
         break;
+      case ActionTypes.LIKE_RANDOMAL:
+        this.likeRandomal(action.randomal, action.user);
       default:
         console.log(`-- NYI - ${action.type}`);
     }
@@ -56,12 +64,19 @@ class RandomalsStore extends ReduceStore {
 
   addRandomal(randomal, user) {
     randomal.creator = user.uid;
+    randomal.likes = {};
     FBApp.database().ref(`randomals/${user.uid}`).push(randomal);
   }
 
   deleteRandomal(randomal, user) {
     if (user.uid === randomal.creator) {
       FBApp.database().ref(`randomals/${user.uid}/${randomal.id}`).remove();
+    }
+  }
+
+  likeRandomal(randomal, user) {
+    if (randomal.likes.filter((uid) => uid === user.uid).length === 0) {
+      FBApp.database().ref(`randomals/${randomal.creator}/${randomal.id}/likes`).push(user.uid);
     }
   }
 }

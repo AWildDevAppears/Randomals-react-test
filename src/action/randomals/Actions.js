@@ -23,6 +23,14 @@ const Actions = {
       user,
     });
   },
+
+  likeRandomal(randomal, user) {
+    Dispatcher.dispatch({
+      type: ActionTypes.LIKE_RANDOMAL,
+      randomal,
+      user,
+    })
+  }
 }
 
 export default Actions;

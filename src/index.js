@@ -11,7 +11,6 @@ import RandomalsStore from './store/RandomalsStore';
 
 
 import AuthActions from './action/auth/Actions';
-import RandomalsActions from './action/randomals/Actions';
 
 function getStores() {
   return [

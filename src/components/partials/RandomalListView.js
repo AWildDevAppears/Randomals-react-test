@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import RandomalsStore from '../../store/RandomalsStore';
 import Actions from '../../action/randomals/Actions';
+
+import LikeComponent from './LikeComponent';
 
 class RandomalListView extends Component {
   render() {
@@ -13,7 +13,7 @@ class RandomalListView extends Component {
   }
 
   displayDeleteButton = (randomal) => {
-    if (this.props.auth.user && this.props.auth.user.uid === randomal.creator) {
+    if (this.userId() === randomal.creator) {
       return <button onClick={ (e) => this.deleteRandomal(randomal) }>Delete</button>;
     }
   }
@@ -30,6 +30,12 @@ class RandomalListView extends Component {
           <h3>{ randomal.name }</h3>
           <p>Made by: { randomal.creator }</p>
           { this.displayDeleteButton(randomal) }
+          <LikeComponent
+            likes={ randomal.likes.length }
+            canLike={ this.userId() !== randomal.creator }
+            hasLiked={ randomal.likes.filter((uid) => uid === this.userId()).length > 0 }
+            onLike={ () => this.likeRandomal(randomal) }
+          />
           <ul>
             { this.displayTraitsForRandomal(randomal) }
           </ul>
@@ -42,7 +48,15 @@ class RandomalListView extends Component {
     Actions.deleteRandomal(randomal, this.props.auth.user);
   }
 
+  likeRandomal = (randomal) => {
+    Actions.likeRandomal(randomal, this.props.auth.user)
+  }
 
+  userId() {
+    if (this.props.auth.user) {
+      return this.props.auth.user.uid;
+    }
+  }
 }
 
 export default RandomalListView;
