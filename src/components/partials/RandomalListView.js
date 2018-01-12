@@ -32,7 +32,7 @@ class RandomalListView extends Component {
           { this.displayDeleteButton(randomal) }
           <LikeComponent
             likes={ randomal.likes.length }
-            canLike={ this.userId() !== randomal.creator }
+            canLike={ this.userId() && this.userId() !== randomal.creator }
             hasLiked={ randomal.likes.filter((uid) => uid === this.userId()).length > 0 }
             onLike={ () => this.likeRandomal(randomal) }
           />
@@ -44,19 +44,16 @@ class RandomalListView extends Component {
     });
   }
 
-  deleteRandomal = (randomal) => {
-    Actions.deleteRandomal(randomal, this.props.auth.user);
-  }
-
-  likeRandomal = (randomal) => {
-    Actions.likeRandomal(randomal, this.props.auth.user)
-  }
-
   userId() {
     if (this.props.auth.user) {
       return this.props.auth.user.uid;
     }
   }
+
+  // Actions
+  deleteRandomal = (randomal) => Actions.deleteRandomal(randomal, this.props.auth.user);
+
+  likeRandomal = (randomal) => Actions.likeRandomal(randomal, this.props.auth.user);
 }
 
 export default RandomalListView;

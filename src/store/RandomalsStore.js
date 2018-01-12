@@ -10,6 +10,8 @@ class RandomalsStore extends ReduceStore {
   constructor() {
     super(Dispatcher);
 
+    // Set up a Firebase socket in order to pull the data from the server as and when
+    // it updates. When we have updates, send an action for updating this data.
     FBApp.database().ref('randomals').on('value', (snapshot) => {
       let data = snapshot.val()
       this.randomals = [];
@@ -33,6 +35,9 @@ class RandomalsStore extends ReduceStore {
       setTimeout(() => Actions.getAllRandomals(), 300)
     });
   }
+
+  // Overrides
+
   reduce(state, action) {
     let s = Object.assign({}, state);
 
@@ -58,9 +63,10 @@ class RandomalsStore extends ReduceStore {
   getInitialState() {
     return {
       list: [],
-      myList: [],
     };
   }
+
+  // Event triggers
 
   addRandomal(randomal, user) {
     randomal.creator = user.uid;

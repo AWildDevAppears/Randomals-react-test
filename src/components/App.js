@@ -6,7 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom'
 
-import Navigation from './Navigation';
+import Navigation from './partials/Navigation';
 import Login from './Login';
 import Home from './Home';
 import MyRandomals from './MyRandomals';
@@ -30,16 +30,24 @@ function App(props) {
               <Home {...routeProps} randomals={ props.randomals.list } auth={ props.auth } />
             )} />
             <Route path="/add" render={(routeProps) => (
-              <AddRandomal {...routeProps} {...props}  />
+              props.auth.user ? (
+                <AddRandomal {...routeProps} {...props} />
+              ) : (
+                <Redirect to="/login" />
+              )
             )} />
             <Route path="/my-list" render={(routeProps) => (
-              <MyRandomals
-                {...routeProps}
-                randomals={
-                  props.auth.user ? props.randomals.list.filter((item) => item.creator === props.auth.user.uid) : []
-                }
-                auth={ props.auth }
-              />
+              props.auth.user ? (
+                <MyRandomals
+                  {...routeProps}
+                  randomals={
+                    props.auth.user ? props.randomals.list.filter((item) => item.creator === props.auth.user.uid) : []
+                  }
+                  auth={ props.auth }
+                />
+              ) : (
+                <Redirect to="/login" />
+              )
             )} />
           </Switch>
         </main>

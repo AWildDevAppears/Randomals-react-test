@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import AuthStore from '../store/AuthStore';
-import Actions from '../action/auth/Actions';
+import AuthStore from '../../store/AuthStore';
+import Actions from '../../action/auth/Actions';
 
-import '../style/list.css';
-import '../style/nav.css';
+import '../../style/list.css';
+import '../../style/nav.css';
 
 class Navigation extends Component {
   state = {
@@ -17,7 +17,9 @@ class Navigation extends Component {
       '/login': 'Log in',
       '/sign-up': 'Sign up',
     },
-    loggedIn: {}
+    loggedIn: {
+      '/my-list': 'My Randomals',
+    }
   }
 
   render() {
@@ -34,9 +36,7 @@ class Navigation extends Component {
     );
   }
 
-  createMenuLink = (key) => {
-    return <li className="list__item" key={key}><Link to={key}>{ this.state.navigation[key] }</Link></li>
-  }
+  createMenuLink = (key) => <li className="list__item" key={key}><Link to={key}>{ this.state.navigation[key] }</Link></li>;
 
   outputConditionalLinks = () => {
     let items = [];

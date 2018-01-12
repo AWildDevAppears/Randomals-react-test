@@ -5,7 +5,7 @@ class LikeComponent extends Component {
   render() {
     return (
       <React.Fragment>
-        <div>{ this.props.likes } Likes</div>
+        <div>{ this.props.likes } { (this.props.likes === 1 ? 'Like' : 'Likes') } </div>
         { this.displayLikeButton() }
       </React.Fragment>
     );
@@ -15,7 +15,7 @@ class LikeComponent extends Component {
     if (this.props.canLike && !this.props.hasLiked) {
       return (<button onClick={ this.props.onLike }>Like?</button>)
     } else if (this.props.hasLiked) {
-      return (<p>You have already liked this Randomal</p>)
+      return (<p>You have liked this Randomal</p>)
     }
   }
 }

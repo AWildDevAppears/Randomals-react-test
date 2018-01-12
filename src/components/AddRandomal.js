@@ -146,7 +146,7 @@ class Home extends Component {
   setName = (e) => {
     this.setState({
       ...this.state,
-      name: e.target.value
+      name: e.target.value,
     });
   }
 
