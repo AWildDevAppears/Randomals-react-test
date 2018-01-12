@@ -168,7 +168,7 @@ class Home extends Component {
 
     Actions.addRandomal(this.state, this.props.auth.user)
 
-    this.props.history.push('/');
+    this.props.history.push('/my-list');
   }
 
   allLookFieldsPopulated = () => {
